@@ -2,12 +2,18 @@
   <div id="Tx">
     <div class="Tx-div">
       <el-table :data="tableData" stripe class="table-size">
-        <el-table-column prop="date" label="日期" width="auto">
+        <el-table-column prop="id" label="id" width="auto">
         </el-table-column>
-        <el-table-column prop="name" label="姓名" width="auto">
+        <el-table-column prop="code" label="激活码" width="auto">
         </el-table-column>
-        <el-table-column prop="address" label="地址" width="auto">
-        </el-table-column>        
+        <el-table-column prop="money" label="金钱" width="auto">
+        </el-table-column>
+        <el-table-column prop="endTime" label="过期时间" width="auto">
+        </el-table-column>
+        <el-table-column prop="prescription" label="次数" width="auto">
+        </el-table-column>
+        <el-table-column prop="typeRemarks" label="说明" width="auto">
+        </el-table-column>
       </el-table>
     </div>
   </div>
@@ -18,44 +24,17 @@
     name: 'Tx',
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        },{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        tableData: []
       }
     },
     methods: {
 
-    }
+    },
+      created() {
+        this.$axios.get("/tokens").then((res) => {
+            this.tableData = res.data.data;
+        })
+      }
   }
 
 </script>

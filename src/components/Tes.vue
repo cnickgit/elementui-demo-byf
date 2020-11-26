@@ -9,6 +9,10 @@
             :value="item.value">
           </el-option>
         </el-select>
+        <div style="margin-top: 60px"></div>
+        <el-row>
+          <el-button type="primary" @click="submit">提交</el-button>
+        </el-row>
       </template>
     </div>
 </template>
@@ -19,6 +23,7 @@
     name: 'Tx2',
     data(){
       return{
+          value: '1',
           options: [{
               value: '1',
               label: '1元 5次 24小时有效'
@@ -39,7 +44,11 @@
       }
     },
     methods: {
-
+        submit(){
+            this.$axios.get("/addToken?type="+this.value).then(res => {
+                console.log("res:",res)
+            })
+        }
     },
     mounted(){
 
