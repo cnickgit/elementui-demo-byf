@@ -15,8 +15,8 @@ export default new Router({
       component: Home,
       iconCls: 'el-icon-platform-eleme',
       children: [
-        { path: '/Tx', component: Tx, name: '菜单1' },
-        { path: '/Tes', component: Tes, name: '菜单2' }
+        { path: '/Tx', component: Tes, name: '新增token' },
+        { path: '/Tes', component: Tx, name: 'token列表' }
       ]
     },
     {

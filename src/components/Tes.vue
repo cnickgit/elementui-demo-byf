@@ -1,6 +1,15 @@
 <template>
     <div id="Tx2">
-        <p>{{msg}}</p>
+      <template>
+        <el-select v-model="value" placeholder="请选择">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </template>
     </div>
 </template>
 
@@ -10,28 +19,30 @@
     name: 'Tx2',
     data(){
       return{
-        msg:"测试"
+          options: [{
+              value: '1',
+              label: '1元 5次 24小时有效'
+          }, {
+              value: '2',
+              label: '3元 30次 24小时有效'
+          }, {
+              value: '3',
+              label: '5元 60次 24小时有效'
+          }, {
+              value: '4',
+              label: '8元 50次 不限制时间'
+          }, {
+              value: '5',
+              label: '25元 200次 不限制时间'
+          }],
+          value: ''
       }
     },
     methods: {
-      getInfo(){
-        let datas={
-          uuid:"9a81fc6428bb41c4b171ea66a409ffc0"
-        };
-        this.$http({
-          method: "post",
-          url: "/login/selectUserInfo",
-          data: Qs.stringify(datas)
-        }).then((res)=>{
-          console.log(res);
-          console.log(this.msg);
-        },(err)=>{
-          console.log(err);
-        });
-      }
+
     },
     mounted(){
-      this.getInfo();
+
     }
   }
 
