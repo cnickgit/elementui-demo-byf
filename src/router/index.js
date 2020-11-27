@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import Home from '@/components/Home'
 import Tx from '@/components/Tx'
 import Tes from '@/components/Tes'
+import Enable from '@/components/Enable'
+import Expired from '@/components/Expired'
 
 Vue.use(Router)
 
@@ -16,7 +18,9 @@ export default new Router({
       iconCls: 'el-icon-platform-eleme',
       children: [
         { path: '/Tx', component: Tes, name: '新增token' },
-        { path: '/Tes', component: Tx, name: 'token列表' }
+        { path: '/Tes', component: Tx, name: '未启用token列表' },
+        { path: '/Enable', component: Enable, name: '已启用token列表' },
+        { path: '/Expired', component: Expired, name: '已过期token列表' },
       ]
     },
     {

@@ -2,8 +2,6 @@
   <div id="Tx">
     <div class="Tx-div">
       <el-table :data="tableData" stripe class="table-size">
-        <el-table-column prop="id" label="id" width="auto">
-        </el-table-column>
         <el-table-column prop="code" label="激活码" width="auto">
         </el-table-column>
         <el-table-column prop="money" label="金钱" width="auto">
@@ -20,23 +18,23 @@
 </template>
 
 <script>
-  export default {
-    name: 'Tx',
-    data() {
-      return {
-        enableType: 0,
-        tableData: []
-      }
-    },
-    methods: {
+    export default {
+        name: 'Expired',
+        data() {
+            return {
+                enableType: 2,
+                tableData: []
+            }
+        },
+        methods: {
 
-    },
-      created() {
-        this.$axios.get("/tokens?enableType="+this.enableType).then((res) => {
-            this.tableData = res.data.data;
-        })
-      }
-  }
+        },
+        created() {
+            this.$axios.get("/tokens?enableType="+this.enableType).then((res) => {
+                this.tableData = res.data.data;
+            })
+        }
+    }
 
 </script>
 
@@ -72,11 +70,11 @@
     width: 98%;
   }
   @media screen and (max-width: 1000px) {
-      .Tx-div{
-        overflow: hidden;
-      }
-      .table-size{
-        font-size: 12px;
-      }
+    .Tx-div{
+      overflow: hidden;
+    }
+    .table-size{
+      font-size: 12px;
+    }
   }
 </style>
