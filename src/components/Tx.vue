@@ -8,11 +8,17 @@
         </el-table-column>
         <el-table-column prop="money" label="金钱" width="auto">
         </el-table-column>
-        <el-table-column prop="endTime" label="过期时间" width="auto">
-        </el-table-column>
         <el-table-column prop="prescription" label="次数" width="auto">
         </el-table-column>
         <el-table-column prop="typeRemarks" label="说明" width="auto">
+        </el-table-column>
+        <el-table-column
+          fixed="right"
+          label="操作"
+          width="100">
+          <template slot-scope="scope">
+            <el-button type="primary" @click="enableZyj(scope.row.id)">启用</el-button>
+          </template>
         </el-table-column>
       </el-table>
     </div>
@@ -29,12 +35,20 @@
       }
     },
     methods: {
-
+      enableZyj(id){
+        this.$axios.get("/enableToken?id="+id).then((res) => {
+          this.$message(res.data.data)
+          this.getData();
+        })
+      },
+      getData(){
+        this.$axios.get("/tokens?enableType="+this.enableType).then((res) => {
+          this.tableData = res.data.data;
+        })
+      }
     },
       created() {
-        this.$axios.get("/tokens?enableType="+this.enableType).then((res) => {
-            this.tableData = res.data.data;
-        })
+       this.getData();
       }
   }
 

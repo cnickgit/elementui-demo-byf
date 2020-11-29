@@ -46,7 +46,8 @@
     methods: {
         submit(){
             this.$axios.get("/addToken?type="+this.value).then(res => {
-                console.log("res:",res)
+              console.log("res.data:",res.data)
+                this.$message(res.data.data);
             })
         }
     },

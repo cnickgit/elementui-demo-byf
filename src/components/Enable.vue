@@ -27,7 +27,6 @@
             }
         },
         methods: {
-
         },
         created() {
             this.$axios.get("/tokens?enableType="+this.enableType).then((res) => {
