@@ -17,7 +17,7 @@
           label="操作"
           width="100">
           <template slot-scope="scope">
-            <el-button type="primary" @click="enableZyj(scope.row.id)">启用</el-button>
+            <el-button type="primary" @click="enableZyj(scope.row.code)">启用</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -35,8 +35,8 @@
       }
     },
     methods: {
-      enableZyj(id){
-        this.$axios.get("/enableToken?id="+id).then((res) => {
+      enableZyj(code){
+        this.$axios.get("/enableToken?code="+code).then((res) => {
           this.$message(res.data.data)
           this.getData();
         })

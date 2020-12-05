@@ -40,12 +40,12 @@
               value: '5',
               label: '25元 200次 不限制时间'
           }],
-          value: ''
+          num: 5
       }
     },
     methods: {
         submit(){
-            this.$axios.get("/addToken?type="+this.value).then(res => {
+            this.$axios.get("/addToken?type="+this.value+"&num="+this.num).then(res => {
               console.log("res.data:",res.data)
                 this.$message(res.data.data);
             })
