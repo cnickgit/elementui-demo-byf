@@ -2,8 +2,8 @@
   <div id="Tx">
     <div class="Tx-div">
       <el-table :data="tableData" stripe class="table-size">
-        <el-table-column prop="id" label="id" width="auto">
-        </el-table-column>
+<!--        <el-table-column prop="id" label="id" width="auto">-->
+<!--        </el-table-column>-->
         <el-table-column prop="code" label="激活码" width="auto">
         </el-table-column>
         <el-table-column prop="money" label="金钱" width="auto">

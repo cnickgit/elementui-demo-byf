@@ -1,6 +1,11 @@
 <template>
   <div id="Tx">
     <div class="Tx-div">
+      <div>
+        当月总收入: {{money.currentMonthMoney}}元
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        当年总收入: {{money.currentYearMoney}}元
+      </div>
       <el-table :data="tableData" stripe class="table-size">
         <el-table-column prop="code" label="激活码" width="auto">
         </el-table-column>
@@ -22,17 +27,25 @@
         name: 'Expired',
         data() {
             return {
+                money: {},
                 enableType: 2,
                 tableData: []
             }
         },
         methods: {
-
+            getMoney(){
+              this.$axios.get("/money").then((res) => {
+                if(res.data.code == 200){
+                  this.money = res.data.data
+                }
+              })
+            }
         },
         created() {
             this.$axios.get("/tokens?enableType="+this.enableType).then((res) => {
                 this.tableData = res.data.data;
             })
+            this.getMoney();
         }
     }
 
