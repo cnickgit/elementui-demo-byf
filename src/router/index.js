@@ -6,6 +6,8 @@ import Tx from '@/components/Tx'
 import Tes from '@/components/Tes'
 import Enable from '@/components/Enable'
 import Expired from '@/components/Expired'
+import AddUser from '@/components/addUser'
+import ZyjUser from '@/components/ZyjUser'
 
 Vue.use(Router)
 
@@ -18,6 +20,8 @@ export default new Router({
       iconCls: 'el-icon-platform-eleme',
       children: [
         { path: '/Tx', component: Tes, name: '新增token' },
+        { path: '/AddUser', component: AddUser, name: '新增用户' },
+        { path: '/ZyjUser', component: ZyjUser, name: '照妖镜用户' },
         { path: '/Tes', component: Tx, name: '未启用token列表' },
         { path: '/Enable', component: Enable, name: '已启用token列表' },
         { path: '/Expired', component: Expired, name: '已过期token列表' },

@@ -8,6 +8,8 @@
         </el-table-column>
         <el-table-column prop="endTime" label="过期时间" width="auto">
         </el-table-column>
+        <el-table-column prop="remainingTimes" label="剩余次数" width="auto">
+        </el-table-column>
         <el-table-column prop="prescription" label="次数" width="auto">
         </el-table-column>
         <el-table-column prop="typeRemarks" label="说明" width="auto">
