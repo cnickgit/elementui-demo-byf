@@ -7,11 +7,11 @@
       </el-table-column>
       <el-table-column prop="password" label="密码" width="auto">
       </el-table-column>
-      <el-table-column prop="obj.userDayHasQueryNum" label="今日已查" width="auto">
+      <el-table-column prop="maxTimes" label="上限" width="auto">
       </el-table-column>
-      <el-table-column prop="obj.userDayHasQueryNumYes" label="昨日已查" width="auto">
+      <el-table-column prop="leaveNum" label="剩余次数" width="auto">
       </el-table-column>
-      <el-table-column prop="obj.qinf" label="描述" width="auto">
+      <el-table-column prop="useStatus" label="使用中" width="auto">
       </el-table-column>
 <!--      <el-table-column-->
 <!--        fixed="right"-->
@@ -38,7 +38,7 @@
       },
       methods: {
           getZyjUser(){
-            this.$axios.get("/myRecord").then(res => {
+            this.$axios.get("/user/zyjUsers").then(res => {
               console.log("res:",res)
                 this.tableData =res.data.data
             })

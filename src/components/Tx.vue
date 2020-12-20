@@ -1,6 +1,9 @@
 <template>
   <div id="Tx">
     <div class="Tx-div">
+      <el-row>
+        <el-button type="primary" @click="exportExcel">导出</el-button>
+      </el-row>
       <el-table :data="tableData" stripe class="table-size">
 <!--        <el-table-column prop="id" label="id" width="auto">-->
 <!--        </el-table-column>-->
@@ -11,6 +14,8 @@
         <el-table-column prop="prescription" label="次数" width="auto">
         </el-table-column>
         <el-table-column prop="typeRemarks" label="说明" width="auto">
+        </el-table-column>
+        <el-table-column prop="exportStatus" label="导出状态" width="auto">
         </el-table-column>
         <el-table-column
           fixed="right"
@@ -30,11 +35,37 @@
     name: 'Tx',
     data() {
       return {
+        num: 100,
         enableType: 0,
         tableData: []
       }
     },
     methods: {
+      exportExcel(){
+        this.$axios({
+          url:"/exportExcelAll?num="+this.num,
+          method:'get',
+          responseType: 'blob',
+        }).then((res) => {
+          let fileName = '激活码'
+
+          const link = document.createElement('a')
+
+          let blob = new Blob([res], { type: 'application/octer-stream' });
+
+          link.style.display = 'none'
+
+          link.href = URL.createObjectURL(blob);
+
+          link.setAttribute('download', fileName + '.xlsx');
+
+          document.body.appendChild(link);
+
+          link.click();
+
+          document.body.removeChild(link);
+        })
+      },
       enableZyj(code){
         this.$axios.get("/enableToken?code="+code).then((res) => {
           this.$message(res.data.data)
