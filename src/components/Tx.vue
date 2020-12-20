@@ -1,9 +1,9 @@
 <template>
   <div id="Tx">
+    <el-row>
+      <el-button type="primary" @click="exportExcel">导出</el-button>
+    </el-row>
     <div class="Tx-div">
-      <el-row>
-        <el-button type="primary" @click="exportExcel">导出</el-button>
-      </el-row>
       <el-table :data="tableData" stripe class="table-size">
 <!--        <el-table-column prop="id" label="id" width="auto">-->
 <!--        </el-table-column>-->
@@ -41,31 +41,30 @@
       }
     },
     methods: {
-      exportExcel(){
-        this.$axios({
-          url:"/exportExcelAll?num="+this.num,
-          method:'get',
-          responseType: 'blob',
-        }).then((res) => {
-          let fileName = '激活码'
-
-          const link = document.createElement('a')
-
-          let blob = new Blob([res], { type: 'application/octer-stream' });
-
-          link.style.display = 'none'
-
-          link.href = URL.createObjectURL(blob);
-
-          link.setAttribute('download', fileName + '.xlsx');
-
-          document.body.appendChild(link);
-
-          link.click();
-
-          document.body.removeChild(link);
-        })
-      },
+        exportExcel(){
+            this.$axios.get("/exportExcelAll?num="+this.num).then((res) => {
+                if(res.data.data != null){
+                    let bytes = window.atob(res.data.data);
+                    let uintArr = new Uint8Array(bytes.length);
+                    let len = bytes.length;
+                    while(len--) {
+                        uintArr[len] = bytes.charCodeAt(len);
+                    }
+                    let file = new Blob([uintArr], {type: 'mine'});
+                    const download = document.createElement("a");
+                    download.href = URL.createObjectURL(file);
+                    download.download = "激活码.xls";
+                    document.body.appendChild(download);
+                    download.click();
+                    document.body.removeChild(download);
+                }else{
+                    this.$message({
+                        type: 'error',
+                        message: '导出激活码数据为空'
+                    })
+                }
+            })
+        },
       enableZyj(code){
         this.$axios.get("/enableToken?code="+code).then((res) => {
           this.$message(res.data.data)
