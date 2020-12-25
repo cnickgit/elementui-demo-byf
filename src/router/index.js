@@ -8,6 +8,8 @@ import Enable from '@/components/Enable'
 import Expired from '@/components/Expired'
 import AddUser from '@/components/addUser'
 import ZyjUser from '@/components/ZyjUser'
+import AddMoneyType from '@/components/AddMoneyType'
+import MoneyType from '@/components/MoneyType'
 
 Vue.use(Router)
 
@@ -19,6 +21,8 @@ export default new Router({
       component: Home,
       iconCls: 'el-icon-platform-eleme',
       children: [
+        { path: '/AddMoneyType', component: AddMoneyType, name: '新增金额类型' },
+        { path: '/MoneyType', component: MoneyType, name: '金币类型' },
         { path: '/Tx', component: Tes, name: '新增token' },
         { path: '/AddUser', component: AddUser, name: '新增用户' },
         { path: '/ZyjUser', component: ZyjUser, name: '照妖镜用户' },
