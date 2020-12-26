@@ -1,6 +1,14 @@
 <template>
   <div id="Tx">
     <el-row>
+      <el-select v-model="value" placeholder="请选择">
+        <el-option
+          v-for="item in options"
+          :key="item.id"
+          :label="item.remarks"
+          :value="item.id">
+        </el-option>
+      </el-select>
       <el-button type="primary" @click="exportExcel">导出</el-button>
     </el-row>
     <div class="Tx-div">
@@ -38,6 +46,9 @@
     name: 'Tx',
     data() {
       return {
+        value: '',
+        options: [],
+        timeType: '',
         num: 100,
         enableType: 0,
         tableData: []
@@ -45,7 +56,7 @@
     },
     methods: {
         exportExcel(){
-            this.$axios.get("/exportExcelAll?num="+this.num).then((res) => {
+            this.$axios.get("/exportExcelAll?typeId="+this.value).then((res) => {
                 if(res.data.data != null){
                     let bytes = window.atob(res.data.data);
                     let uintArr = new Uint8Array(bytes.length);
@@ -78,10 +89,19 @@
         this.$axios.get("/tokens?enableType="+this.enableType).then((res) => {
           this.tableData = res.data.data;
         })
+      },
+      getMoneyTypes(){
+        this.$axios.get("/moneyTypes").then(res => {
+             if(res.data.code == 200){
+                  this.options = res.data.data;
+             }
+
+          })
       }
     },
       created() {
        this.getData();
+       this.getMoneyTypes();
       }
   }
 
