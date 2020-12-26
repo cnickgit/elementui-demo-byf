@@ -8,7 +8,7 @@
         <el-input v-model="form.queryNum"></el-input>
       </el-form-item>
       <el-form-item label="时间类型">
-        <el-select v-model="form.timeType" placeholder="请选择活动区域">
+        <el-select v-model="form.timeType" placeholder="请选择时间类型">
           <el-option label="24小时有效" value="1"></el-option>
           <el-option label="不限时间" value="2"></el-option>
         </el-select>
@@ -37,7 +37,9 @@
       methods: {
         onSubmit() {
           this.$axios.post("/addMoneyType",this.form).then(res => {
-            console.log("res:",res);
+              if(res.data.code == 200){
+                this.$message(res.data.data)
+              }
           })
         }
       }

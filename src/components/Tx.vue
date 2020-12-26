@@ -16,6 +16,9 @@
         <el-table-column prop="typeRemarks" label="说明" width="auto">
         </el-table-column>
         <el-table-column prop="exportStatus" label="导出状态" width="auto">
+          <template slot-scope="scope">
+            {{scope.row.exportStatus == '0' ? '未导出' : '已导出'}}
+          </template>
         </el-table-column>
         <el-table-column
           fixed="right"

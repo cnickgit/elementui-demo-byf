@@ -1,19 +1,21 @@
 <template>
     <div id="Tx2">
-      <template>
+      <el-form ref="form" :model="form" label-width="80px">
         <el-select v-model="value" placeholder="请选择">
           <el-option
             v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
+            :key="item.id"
+            :label="item.remarks"
+            :value="item.id">
           </el-option>
         </el-select>
-        <div style="margin-top: 60px"></div>
-        <el-row>
-          <el-button type="primary" @click="submit">提交</el-button>
-        </el-row>
-      </template>
+        <el-form-item label="生成次数">
+          <el-input  v-model="num"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="submit">立即创建</el-button>
+        </el-form-item>
+      </el-form>
     </div>
 </template>
 
@@ -23,36 +25,30 @@
     name: 'Tx2',
     data(){
       return{
-          value: '1',
-          options: [{
-              value: '1',
-              label: '1元 5次 24小时有效'
-          }, {
-              value: '2',
-              label: '3元 30次 24小时有效'
-          }, {
-              value: '3',
-              label: '5元 60次 24小时有效'
-          }, {
-              value: '4',
-              label: '8元 50次 不限制时间'
-          }, {
-              value: '5',
-              label: '25元 200次 不限制时间'
-          }],
-          num: 5
+          form: {},
+          value: '',
+          options: [],
+          num: 100
       }
     },
     methods: {
         submit(){
-            this.$axios.get("/addToken?type="+this.value+"&num="+this.num).then(res => {
+            this.$axios.get("/addToken?typeId="+this.value+"&num="+this.num).then(res => {
               console.log("res.data:",res.data)
                 this.$message(res.data.data);
             })
+        },
+        getMoneyTypes(){
+          this.$axios.get("/moneyTypes").then(res => {
+            if(res.data.code == 200){
+              this.options = res.data.data;
+            }
+
+          })
         }
     },
     mounted(){
-
+        this.getMoneyTypes();
     }
   }
 
