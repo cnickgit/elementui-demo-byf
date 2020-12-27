@@ -16,6 +16,7 @@
           width="100">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="edit(scope.row.id)">编辑</el-button>
+            <el-button type="text" size="small" @click="remove(scope.row.id)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -62,6 +63,14 @@
           this.getMoneyTypes();
         },
         methods: {
+          remove(id){
+            this.$axios.get("/remove/id="+id).then(res => {
+              if(res.data.code == 200){
+                this.$message(res.data.data);
+                this.getMoneyTypes();
+              }
+            })
+          },
           updateType(){
             this.$axios.post("/addMoneyType",this.form).then(res => {
               console.log("res:",res)

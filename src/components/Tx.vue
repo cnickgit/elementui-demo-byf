@@ -71,6 +71,7 @@
                     document.body.appendChild(download);
                     download.click();
                     document.body.removeChild(download);
+                    this.getData();
                 }else{
                     this.$message({
                         type: 'error',
