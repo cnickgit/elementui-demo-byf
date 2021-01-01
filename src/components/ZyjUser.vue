@@ -13,6 +13,8 @@
       </el-table-column>
       <el-table-column prop="useStatus" label="使用中" width="auto">
       </el-table-column>
+      <el-table-column prop="queryNum" label="查询次数" width="auto">
+      </el-table-column>
 <!--      <el-table-column-->
 <!--        fixed="right"-->
 <!--        label="操作"-->
