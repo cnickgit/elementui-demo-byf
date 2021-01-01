@@ -11,6 +11,10 @@
         <el-select v-model="form.timeType" placeholder="请选择时间类型">
           <el-option label="24小时有效" value="1"></el-option>
           <el-option label="不限时间" value="2"></el-option>
+          <el-option label="7天有效" value="3"></el-option>
+          <el-option label="30天有效" value="4"></el-option>
+          <el-option label="90天有效" value="5"></el-option>
+          <el-option label="180天有效" value="6"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>

@@ -5,10 +5,10 @@
         </el-table-column>
         <el-table-column prop="queryNum" label="查询次数" width="auto">
         </el-table-column>
-        <el-table-column prop="timeType" label="时间类型" width="auto">
-          <template slot-scope="scope">
-            {{scope.row.timeType == '1' ? '24小时有效' : '不限时间'}}
-          </template>
+        <el-table-column prop="remarks" label="说明" width="auto">
+<!--          <template slot-scope="scope">-->
+<!--            {{scope.row.timeType == '1' ? '24小时有效' : '不限时间'}}-->
+<!--          </template>-->
         </el-table-column>
         <el-table-column
           fixed="right"
@@ -32,6 +32,10 @@
             <el-select v-model="form.timeType" placeholder="请选择活动区域">
               <el-option label="24小时有效" value="1"></el-option>
               <el-option label="不限时间" value="2"></el-option>
+              <el-option label="7天有效" value="3"></el-option>
+              <el-option label="30天有效" value="4"></el-option>
+              <el-option label="90天有效" value="5"></el-option>
+              <el-option label="180天有效" value="6"></el-option>
             </el-select>
           </el-form-item>
         </el-form>
