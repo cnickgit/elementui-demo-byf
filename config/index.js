@@ -8,9 +8,20 @@ module.exports = {
   dev: {
 
     // Paths
+    // http://182.92.126.206:20001/
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {},
+    assetsPublicPath: '/backstorge/',
+    proxyTable: {
+      "/api": {
+        target: 'http://182.92.126.206:20001/',
+        changeOrigin: true, // 是否改变域名
+        ws: true,
+        pathRewrite: {
+          // 路径重写
+          "/api": "" // 这个意思就是以api开头的，定向到哪里, 如果你的后边还有路径的话， 会自动拼接上
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: '127.0.0.1', // can be overwritten by process.env.HOST
@@ -43,7 +54,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: '/backstorge/',
 
     /**
      * Source Maps

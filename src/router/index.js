@@ -14,6 +14,8 @@ import MoneyType from '@/components/MoneyType'
 Vue.use(Router)
 
 export default new Router({
+  base: '/backstorge/',
+  mode: 'hash',
   routes: [
     {
       path: '/',
