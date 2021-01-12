@@ -10,6 +10,8 @@ import AddUser from '@/components/addUser'
 import ZyjUser from '@/components/ZyjUser'
 import AddMoneyType from '@/components/AddMoneyType'
 import MoneyType from '@/components/MoneyType'
+import ZyjUser20001 from "../components/ZyjUser20001";
+import ZyjUser30001 from "../components/ZyjUser30001";
 
 Vue.use(Router)
 
@@ -28,6 +30,8 @@ export default new Router({
         { path: '/Tx', component: Tes, name: '新增token' },
         { path: '/AddUser', component: AddUser, name: '新增用户' },
         { path: '/ZyjUser', component: ZyjUser, name: '照妖镜用户' },
+        { path: '/ZyjUser20001', component: ZyjUser20001, name: '20001照妖镜用户' },
+        { path: '/ZyjUser30001', component: ZyjUser30001, name: '30001照妖镜用户' },
         { path: '/Tes', component: Tx, name: '未启用token列表' },
         { path: '/Enable', component: Enable, name: '已启用token列表' },
         { path: '/Expired', component: Expired, name: '已过期token列表' },

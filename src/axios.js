@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 
 
+// axios.defaults.baseURL = "api"
 axios.defaults.baseURL = "/api"
 // http://182.92.126.206:8082
 
