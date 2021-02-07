@@ -13,7 +13,7 @@ module.exports = {
     assetsPublicPath: '/backstorge/',
     proxyTable: {
       "/api": {
-        target: 'http://182.92.126.206:20001/',
+        target: 'http://127.0.0.1:20001/',
         changeOrigin: true, // 是否改变域名
         ws: true,
         pathRewrite: {

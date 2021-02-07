@@ -11,7 +11,10 @@
       </el-table-column>
       <el-table-column prop="leaveNum" label="剩余次数" width="auto">
       </el-table-column>
-      <el-table-column prop="useStatus" label="使用中" width="auto">
+      <el-table-column prop="useStatus" label="使用状态" width="auto">
+        <template slot-scope="scope">
+          {{scope.row.useStatus == '0' ? '待使用' : (scope.row.useStatus == '1' ? '已使用' : '停用')}}
+        </template>
       </el-table-column>
       <el-table-column prop="queryNum" label="查询次数" width="auto">
       </el-table-column>
