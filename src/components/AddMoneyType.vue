@@ -15,6 +15,7 @@
           <el-option label="30天有效" value="4"></el-option>
           <el-option label="90天有效" value="5"></el-option>
           <el-option label="180天有效" value="6"></el-option>
+          <el-option label="360天有效" value="7"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -32,6 +33,7 @@
       data() {
         return {
           form: {
+            money: 0,
             name: '',
             queryNum: 0,
             timeType: '',
