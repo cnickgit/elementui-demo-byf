@@ -13,15 +13,21 @@ import MoneyType from '@/components/MoneyType'
 import ZyjUser20001 from "../components/ZyjUser20001";
 import ZyjUser30001 from "../components/ZyjUser30001";
 import ZyjUser40001 from "../components/ZyjUser40001";
+import Login from "../components/Login"
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   base: '/backstorge/',
   mode: 'hash',
   routes: [
     {
       path: '/',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/home',
       name: '主要菜单',
       component: Home,
       iconCls: 'el-icon-platform-eleme',
@@ -56,3 +62,18 @@ export default new Router({
     },
   ]
 })
+
+//路由守卫
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') {
+    next();
+  } else {
+    let token = localStorage.getItem('Authorization');
+    if (token === 'null' || token === '') {
+      next('/login');
+    } else {
+      next();
+    }
+  }
+});
+export default router

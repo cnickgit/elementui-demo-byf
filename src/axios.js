@@ -15,10 +15,9 @@ axios.interceptors.request.use(config => {
 
 axios.interceptors.response.use(response => {
     let res = response.data;
-
-    console.log("=================")
-    console.log(res)
-    console.log("=================")
+    if (localStorage.getItem('Authorization')) {
+      response.headers.Authorization = localStorage.getItem('Authorization');
+    }
     return response
     // if (res.code === 200) {
     //   return response

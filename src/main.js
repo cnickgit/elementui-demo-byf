@@ -7,6 +7,8 @@ import ElementUI from 'element-ui'; //饿了么UI
 import 'element-ui/lib/theme-chalk/index.css';  //饿了么UI
 import axios from 'axios'
 import "./axios"
+//这里要导入store
+import store from "./store";
 Vue.prototype.$axios = axios;  //默认调用地址的名称
 // axios.defaults.baseURL = 'https://www.hcxlyun.cn/cloud-examine'; //设置公用请求 测试环境
 
@@ -19,9 +21,15 @@ router.afterEach((to,from,next) => {
   window.scrollTo(0,0);
 });
 
+// new Vue({
+//   el: '#app',
+//   store,
+//   router,
+//   components: { App },
+//   template: '<App/>'
+// })
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
-})
+  //这里要配置store
+  router, store:store,
+  render: function (h) { return h(App) }
+}).$mount('#app')
