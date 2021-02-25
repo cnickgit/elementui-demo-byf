@@ -10,14 +10,16 @@ axios.defaults.baseURL = "/api"
 
 // 前置拦截
 axios.interceptors.request.use(config => {
+  if (localStorage.getItem('Authorization')) {
+    // config.headers.Authorization = localStorage.getItem('Authorization');
+    config.headers.token = localStorage.getItem('Authorization')
+  }
+  console.log("config.headers.token:",config.headers.token)
   return config
 })
 
 axios.interceptors.response.use(response => {
-    let res = response.data;
-    if (localStorage.getItem('Authorization')) {
-      response.headers.Authorization = localStorage.getItem('Authorization');
-    }
+    // let res = response.data;
     return response
     // if (res.code === 200) {
     //   return response

@@ -54,11 +54,11 @@
             submitForm() {
                 let v=this;
                 this.$axios.post("/user/login",this.loginForm).then(res => {
-                    console.log("res:",res);
                     if(res.data.code == 400){
                         this.$message(res.data.msg || '登录失败');
                     }else {
-                        this.userToken = 'Bearer ' + res.data.data.token;
+                        // this.userToken = 'Bearer ' + res.data.data.token;
+                        this.userToken = res.data.data.token;
                         // 将用户token保存到vuex中
                         console.log("userToken:",this.userToken);
                         this.changeLogin({ Authorization:v.userToken });
